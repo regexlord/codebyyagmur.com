@@ -1,0 +1,666 @@
+import React, { useState } from 'react';
+import {
+  Mail,
+  Linkedin,
+  ArrowUpRight,
+  ChevronDown,
+  ExternalLink,
+  Copy,
+  Check,
+  Cpu,
+  Bot,
+  GraduationCap,
+  Briefcase,
+  Layers,
+  Award,
+  BookOpen,
+  Volume2,
+  VolumeX,
+} from 'lucide-react';
+
+export default function App() {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [videoMuted, setVideoMuted] = useState(true);
+  const [imgErrors, setImgErrors] = useState<{ [key: string]: boolean }>({});
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText('kahramanyagmur178@gmail.com');
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
+  };
+
+  const handleImageError = (key: string) => {
+    setImgErrors((prev) => ({ ...prev, [key]: true }));
+  };
+
+  const gmailComposeUrl =
+    'https://mail.google.com/mail/?view=cm&fs=1&to=kahramanyagmur178@gmail.com&su=Inquiry%20via%20Portfolio';
+
+  return (
+    <div className="min-h-screen bg-[#F9F7F2] text-[#3D3D3D] selection:bg-[#BC8F8F]/20 selection:text-stone-900 font-sans relative">
+      {/* Background paper texture overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.035] z-50"
+        style={{
+          backgroundImage:
+            'radial-gradient(#3D3D3D 0.75px, transparent 0.75px), radial-gradient(#3D3D3D 0.75px, #F9F7F2 0.75px)',
+          backgroundSize: '30px 30px',
+          backgroundPosition: '0 0, 15px 15px',
+        }}
+      />
+
+      {/* Navigation */}
+      <nav className="sticky top-0 z-40 backdrop-blur-md bg-[#F9F7F2]/90 border-b border-[#EAE3D9]/60 transition-all">
+        <div className="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+          <a
+            href="#hero"
+            className="text-2xl md:text-3xl font-bold serif italic tracking-tighter text-stone-900 hover:text-stone-700 transition"
+          >
+            Y. Kahraman
+          </a>
+
+          <div className="hidden md:flex items-center space-x-8 text-[11px] uppercase tracking-[0.22em] font-semibold text-stone-500">
+            <a href="#about" className="hover:text-[#BC8F8F] hover:italic transition">
+              About
+            </a>
+            <a href="#experience" className="hover:text-[#BC8F8F] hover:italic transition">
+              Experience
+            </a>
+            <a href="#projects" className="hover:text-[#BC8F8F] hover:italic transition">
+              Projects
+            </a>
+            <a href="#education" className="hover:text-[#BC8F8F] hover:italic transition">
+              Skills & Education
+            </a>
+            <a
+              href="#contact"
+              className="text-stone-900 border-b-2 border-stone-800 pb-0.5 hover:text-[#BC8F8F] hover:border-[#BC8F8F] transition"
+            >
+              Contact
+            </a>
+          </div>
+
+          {/* Mobile direct contact pill */}
+          <div className="md:hidden">
+            <a
+              href={gmailComposeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full border border-stone-300 text-stone-800 hover:bg-stone-200 transition"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>Gmail</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero & About Combined Section */}
+      <header
+        id="hero"
+        className="py-12 md:py-24 px-6 max-w-6xl mx-auto grid md:grid-cols-12 gap-12 items-center relative z-10"
+      >
+        <div className="order-2 md:order-1 md:col-span-7 text-center md:text-left">
+          <span className="label-caps inline-block mb-3 text-stone-400">
+            Electrical & Electronics Engineering
+          </span>
+          <h1 className="text-5xl sm:text-6xl md:text-8xl mb-6 leading-[1.08] tracking-tight text-stone-900 font-bold">
+            Yağmur <br />
+            <span className="italic font-light text-stone-400">Kahraman</span>
+          </h1>
+
+          {/* Original introductory tagline */}
+          <p className="text-stone-600 text-lg leading-relaxed max-w-lg mb-8 font-light italic">
+            Electrical and Electronics Engineering Student with a systems-oriented approach and passion for aviation technologies.
+          </p>
+
+          {/* About Me subsection targeted by top-nav #about link */}
+          <div id="about" className="pt-2 pb-8 max-w-xl scroll-mt-28">
+            <h2 className="serif text-2xl md:text-3xl italic text-stone-800 mb-3">About Me</h2>
+            <p className="text-stone-700 text-base md:text-lg leading-relaxed font-light italic">
+              "Electrical and Electronics Engineering student with a strong passion for aviation
+              technologies, embedded systems, and software development. Through hands-on internships
+              and multidisciplinary academic projects, I have cultivated a rigorous, systems-oriented
+              engineering approach focused on hardware-software integration. Dedicated to tackling
+              real-world technical challenges and continuously advancing my engineering capabilities."
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-5 pt-2">
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] border-b-2 border-stone-900 pb-1.5 hover:text-stone-500 hover:border-stone-500 transition italic group"
+            >
+              <span>View My Work</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+        </div>
+
+        {/* Profile Image Column - Natural Full Colors, No Grayscale */}
+        <div className="order-1 md:order-2 md:col-span-5 flex justify-center">
+          <div className="relative group">
+            {imgErrors['profile'] ? (
+              <div className="w-64 h-80 md:w-80 md:h-[460px] rounded-sm bg-stone-200/80 border border-stone-300 flex flex-col items-center justify-center p-8 text-center shadow-xl">
+                <div className="w-20 h-20 rounded-full bg-stone-300 flex items-center justify-center text-stone-600 mb-4 font-serif text-3xl italic">
+                  YK
+                </div>
+                <h3 className="serif text-xl font-bold text-stone-800 mb-1">Yağmur Kahraman</h3>
+                <p className="text-xs uppercase tracking-widest text-stone-500 font-semibold mb-4">
+                  Ostim Technical University
+                </p>
+                <p className="text-xs text-stone-400 italic">
+                  (Fotoğraf dosyanız profil-foto.png olarak yüklendiğinde otomatik görünecektir)
+                </p>
+              </div>
+            ) : (
+              <img
+                src="profil-foto.png"
+                alt="Yağmur Kahraman"
+                onError={() => handleImageError('profile')}
+                className="w-64 h-80 md:w-80 md:h-[460px] object-cover rounded-sm shadow-2xl asset-card transition-all duration-500"
+              />
+            )}
+            <div className="absolute -bottom-4 -right-4 w-full h-full border border-stone-300/80 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
+          </div>
+        </div>
+      </header>
+
+      {/* Work Experience Section */}
+      <section id="experience" className="py-24 px-6 max-w-5xl mx-auto section-divider">
+        <div className="mb-16">
+          <span className="label-caps text-stone-400 block mb-2">Career & Practice</span>
+          <h2 className="serif text-4xl md:text-5xl italic text-stone-800">Work Experience</h2>
+        </div>
+
+        <div className="space-y-16 border-l-2 border-stone-200 pl-8 md:pl-12">
+          {/* Exp 1 - July 2025 – August 2025 */}
+          <div className="relative group">
+            <div className="absolute -left-[41px] md:-left-[57px] top-1.5 w-4 h-4 bg-stone-700 rounded-full border-4 border-[#F9F7F2] group-hover:scale-125 transition-transform"></div>
+            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#BC8F8F] italic">
+              July 2025 – August 2025
+            </span>
+            <h4 className="text-2xl font-bold text-stone-800 mt-1 italic">
+              TC. Cumhurbaşkanlığı İletişim Başkanlığı
+            </h4>
+            <p className="text-stone-500 italic text-sm mt-0.5 flex items-center gap-2">
+              <Briefcase className="w-3.5 h-3.5 inline text-stone-400" />
+              <span>Engineering Intern</span>
+              <span className="text-stone-300">•</span>
+              <span>Çankaya, Ankara</span>
+            </p>
+            <p className="text-stone-600 text-sm md:text-base mt-4 leading-relaxed font-light italic max-w-3xl">
+              Assisted in the development of secure software interfaces. Worked with document
+              classification and data structuring systems. Supported technical workflow processes
+              in a high-standards engineering environment.
+            </p>
+          </div>
+
+          {/* Exp 2 - June 2024 */}
+          <div className="relative group">
+            <div className="absolute -left-[41px] md:-left-[57px] top-1.5 w-4 h-4 bg-stone-400 rounded-full border-4 border-[#F9F7F2] group-hover:scale-125 transition-transform"></div>
+            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-stone-400 italic">
+              June 2024
+            </span>
+            <h4 className="text-2xl font-bold text-stone-800 mt-1 italic">Uptechlabs</h4>
+            <p className="text-stone-500 italic text-sm mt-0.5 flex items-center gap-2">
+              <Briefcase className="w-3.5 h-3.5 inline text-stone-400" />
+              <span>Engineering Intern</span>
+              <span className="text-stone-300">•</span>
+              <span>Remote</span>
+            </p>
+            <p className="text-stone-600 text-sm md:text-base mt-4 leading-relaxed font-light italic max-w-3xl">
+              Developed embedded system prototypes using sensors and microcontrollers. Worked on LED
+              control systems and applied principles of basic robotics and sensor actuation.
+            </p>
+          </div>
+
+          {/* Exp 3 - Jan 2024 – Feb 2024 */}
+          <div className="relative group">
+            <div className="absolute -left-[41px] md:-left-[57px] top-1.5 w-4 h-4 bg-stone-400 rounded-full border-4 border-[#F9F7F2] group-hover:scale-125 transition-transform"></div>
+            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-stone-400 italic">
+              Jan 2024 – Feb 2024
+            </span>
+            <h4 className="text-2xl font-bold text-stone-800 mt-1 italic">
+              Cisco Networking Academy
+            </h4>
+            <p className="text-stone-500 italic text-sm mt-0.5 flex items-center gap-2">
+              <Briefcase className="w-3.5 h-3.5 inline text-stone-400" />
+              <span>Engineering Intern</span>
+              <span className="text-stone-300">•</span>
+              <span>İzmir, Turkey</span>
+            </p>
+            <p className="text-stone-600 text-sm md:text-base mt-4 leading-relaxed font-light italic max-w-3xl">
+              Developed foundational and applied skills in Python programming with practical
+              exercises oriented around software development, data science algorithms, and machine
+              learning concepts.
+            </p>
+          </div>
+
+          {/* Exp 4 - June 2023 – July 2023 */}
+          <div className="relative group">
+            <div className="absolute -left-[41px] md:-left-[57px] top-1.5 w-4 h-4 bg-stone-300 rounded-full border-4 border-[#F9F7F2] group-hover:scale-125 transition-transform"></div>
+            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-stone-400 italic">
+              June 2023 – July 2023
+            </span>
+            <h4 className="text-2xl font-bold text-stone-800 mt-1 italic">Gdz Elektrik</h4>
+            <p className="text-stone-500 italic text-sm mt-0.5 flex items-center gap-2">
+              <Briefcase className="w-3.5 h-3.5 inline text-stone-400" />
+              <span>Engineering Intern</span>
+              <span className="text-stone-300">•</span>
+              <span>Bornova, İzmir</span>
+            </p>
+            <p className="text-stone-600 text-sm md:text-base mt-4 leading-relaxed font-light italic max-w-3xl">
+              Gained practical experience working in the electricity meter workshop, understanding
+              single-phase mechanical and electronic meters, precision calibration, and electrical
+              wiring connections.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section (Enriched technical detail, natural full colors, autoplay video) */}
+      <section id="projects" className="py-24 px-6 max-w-6xl mx-auto section-divider">
+        <div className="text-center mb-16">
+          <span className="label-caps text-stone-400 block mb-2">Robotics & Embedded Systems</span>
+          <h2 className="serif text-4xl md:text-5xl italic text-stone-800 inline-block underline decoration-stone-200 underline-offset-8">
+            Featured Project: Dogduino
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-12 gap-12 items-start">
+          {/* Media column: Video with autoplay/loop/muted + Gallery images in full natural colors */}
+          <div className="md:col-span-6 grid grid-cols-2 gap-4">
+            {/* Main Video Box */}
+            <div className="col-span-2 aspect-video bg-stone-900 rounded-sm overflow-hidden shadow-xl relative group">
+              <video
+                autoPlay
+                loop
+                muted={videoMuted}
+                playsInline
+                controls
+                className="w-full h-full object-cover transition-all"
+              >
+                <source src="dogduino-video.mp4" type="video/mp4" />
+                Tarayıcınız video oynatmayı desteklemiyor.
+              </video>
+              <button
+                onClick={() => setVideoMuted(!videoMuted)}
+                title={videoMuted ? 'Sesi Aç' : 'Sesi Kapat'}
+                className="absolute top-3 right-3 p-2 rounded-full bg-stone-900/70 text-white hover:bg-stone-900 backdrop-blur-sm transition z-20"
+              >
+                {videoMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              </button>
+            </div>
+
+            {/* Photo 1 */}
+            <div className="w-full h-48 bg-stone-100 rounded-sm overflow-hidden asset-card shadow-sm">
+              {imgErrors['dogduino-1'] ? (
+                <div className="w-full h-full flex flex-col items-center justify-center p-3 text-center bg-stone-200/50">
+                  <Bot className="w-8 h-8 text-stone-400 mb-1" />
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-stone-500">
+                    Hardware Assembly
+                  </span>
+                </div>
+              ) : (
+                <img
+                  src="dogduino-1.png"
+                  alt="Dogduino Hardware Assembly"
+                  onError={() => handleImageError('dogduino-1')}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+
+            {/* Photo 2 */}
+            <div className="w-full h-48 bg-stone-100 rounded-sm overflow-hidden asset-card shadow-sm">
+              {imgErrors['dogduino-2'] ? (
+                <div className="w-full h-full flex flex-col items-center justify-center p-3 text-center bg-stone-200/50">
+                  <Cpu className="w-8 h-8 text-stone-400 mb-1" />
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-stone-500">
+                    PCA9685 Circuitry
+                  </span>
+                </div>
+              ) : (
+                <img
+                  src="dogduino-2.png"
+                  alt="Dogduino PCA9685 Circuitry"
+                  onError={() => handleImageError('dogduino-2')}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+
+            {/* Photo 3 */}
+            <div className="col-span-2 w-full h-56 bg-stone-100 rounded-sm overflow-hidden asset-card shadow-sm">
+              {imgErrors['dogduino-3'] ? (
+                <div className="w-full h-full flex flex-col items-center justify-center p-3 text-center bg-stone-200/50">
+                  <Layers className="w-8 h-8 text-stone-400 mb-1" />
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-stone-500">
+                    Gait Kinematics & Testing
+                  </span>
+                </div>
+              ) : (
+                <img
+                  src="dogduino-3.png"
+                  alt="Dogduino Kinematics Testing"
+                  onError={() => handleImageError('dogduino-3')}
+                  className="w-full h-full object-cover"
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Description column with extended technical details */}
+          <div className="md:col-span-6 flex flex-col justify-center h-full">
+            <span className="label-caps text-[#BC8F8F] mb-2">Robotics Prototype</span>
+            <h3 className="serif text-3xl md:text-4xl mb-6 italic text-stone-800 font-normal">
+              Educational Quadruped Robot
+            </h3>
+
+            {/* Extended technical description */}
+            <div className="text-stone-600 space-y-4 mb-8 font-light italic text-base md:text-lg leading-relaxed">
+              <p>
+                Dogduino is a cost-effective educational quadruped robotics platform engineered
+                around an ESP32 microcontroller and a PCA9685 16-channel 12-bit PWM servo driver. The
+                chassis coordinates 8 servo-driven legs to achieve smooth omnidirectional locomotion.
+              </p>
+              <p>
+                The project implements mathematical inverse kinematics (IK) algorithms to translate
+                three-dimensional gait coordinates into synchronized joint angles. It features
+                dynamic center-of-mass balancing, customized trotting rhythms, and parameterizable
+                leg clearance.
+              </p>
+              <p>
+                Integrated with real-time Bluetooth wireless communication, the system receives
+                low-latency commands from a companion mobile controller interface, executing smooth
+                transitions between walking, crouching, sitting, and active standing modes.
+              </p>
+            </div>
+
+            {/* Technical Highlights Badges */}
+            <div className="space-y-3 pt-2 border-t border-stone-200">
+              <div className="flex flex-wrap items-center gap-2 italic text-[11px] uppercase font-bold tracking-widest text-stone-500">
+                <span className="px-2.5 py-1 bg-white border border-stone-200 rounded-sm">
+                  ESP32
+                </span>
+                <span className="px-2.5 py-1 bg-white border border-stone-200 rounded-sm">
+                  PCA9685 (16-Ch PWM)
+                </span>
+                <span className="px-2.5 py-1 bg-white border border-stone-200 rounded-sm">
+                  Inverse Kinematics
+                </span>
+                <span className="px-2.5 py-1 bg-white border border-stone-200 rounded-sm">
+                  8-DOF Gait Control
+                </span>
+                <span className="px-2.5 py-1 bg-white border border-stone-200 rounded-sm">
+                  Bluetooth Telemetry
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education & Skills Section */}
+      <section id="education" className="py-24 px-6 max-w-6xl mx-auto section-divider">
+        <div className="grid md:grid-cols-12 gap-12 items-start">
+          {/* Education Card */}
+          <div className="md:col-span-5">
+            <h2 className="serif text-5xl mb-12 italic text-stone-800">Education</h2>
+            <div className="white-card p-10 md:p-14">
+              <div className="w-12 h-12 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-700 mb-6">
+                <GraduationCap className="w-6 h-6" />
+              </div>
+              <h4 className="text-2xl font-bold text-stone-900 mb-2">Ostim Technical University</h4>
+              <p className="serif italic text-stone-600 text-lg mb-6 leading-tight">
+                Electrical and Electronics Engineering (English)
+              </p>
+
+              {/* Updated date range as requested: OCT 2021 — DEC 2026 */}
+              <p className="label-caps italic text-[#BC8F8F] font-bold">
+                OCT 2021 — DEC 2026
+              </p>
+            </div>
+          </div>
+
+          {/* Skills & Expertise (Updated professional skills for an English EEE graduate) */}
+          <div className="md:col-span-7">
+            <h2 className="serif text-5xl mb-12 italic text-left md:text-right text-stone-800">
+              Skills & Expertise
+            </h2>
+            <div className="space-y-12">
+              <div>
+                <p className="label-caps mb-4 text-left md:text-right">TECHNICAL PROFICIENCY</p>
+                <p className="text-stone-700 font-light text-xl md:text-2xl leading-relaxed text-left md:text-right">
+                  Python, C++, C Programming, Proteus, PIC C Compiler, Saleae Logic Analyzer, MATLAB,
+                  Simulink, Microsoft Office.
+                </p>
+              </div>
+
+              {/* Professional skills tailored for English-medium Electrical & Electronics Engineering */}
+              <div>
+                <p className="label-caps mb-4 text-left md:text-right">PROFESSIONAL SKILLS</p>
+                <p className="text-stone-700 font-light text-xl md:text-2xl leading-relaxed text-left md:text-right">
+                  Systems Engineering & Design, Hardware-Software Integration, Circuit Analysis &
+                  Debugging, Technical Documentation & Reporting (English), Cross-Functional Team
+                  Collaboration, Problem Solving & Analytical Modeling, Agile Project Execution.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications, Languages, Interests (Preserved exactly as requested) */}
+      <section className="py-24 px-6 max-w-6xl mx-auto section-divider">
+        <div className="grid md:grid-cols-12 gap-12 items-start">
+          <div className="md:col-span-6">
+            <h2 className="serif text-4xl md:text-5xl mb-12 italic text-stone-800">
+              Certifications
+            </h2>
+            <ul className="text-stone-600 space-y-4 text-lg md:text-xl font-light italic">
+              <li className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                <span>TEI Aviation Engines School (2025)</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                <span>Control Design Onramp — MathWorks (2025)</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                <span>Simulink Onramp — MathWorks (2025)</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                <span>Python Programming 1 & 2 — Bilgeiş</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                <span>Artificial Intelligence for Everyone 1 & 2</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                <span>SAP — Fundamental Systems Understanding</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-3">
+            <p className="label-caps mb-8 uppercase text-stone-400">LANGUAGES</p>
+            <ul className="text-stone-600 text-lg md:text-xl italic space-y-4 font-light leading-snug">
+              <li className="border-b border-stone-200/80 pb-2">
+                <span className="font-normal text-stone-800">Turkish</span> — Native
+              </li>
+              <li className="border-b border-stone-200/80 pb-2">
+                <span className="font-normal text-stone-800">English</span> — Upper Intermediate
+              </li>
+              <li className="pb-2">
+                <span className="font-normal text-stone-800">Russian</span> — Elementary
+              </li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-3">
+            <p className="label-caps mb-8 uppercase text-stone-400">INTERESTS</p>
+            <p className="text-stone-600 text-lg md:text-xl italic leading-relaxed font-light">
+              Swimming, Basketball, Music, Songwriting.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* References Section (Preserved and styled) */}
+      <section id="contact-refs" className="py-24 px-6 max-w-6xl mx-auto section-divider">
+        <h2 className="serif text-4xl md:text-5xl mb-16 italic text-center text-stone-800 underline decoration-stone-200 underline-offset-8">
+          References
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8 items-stretch">
+          {/* Ref 1 */}
+          <div className="white-card p-10 flex flex-col justify-between">
+            <div>
+              <h4 className="font-bold text-stone-800 text-xl md:text-2xl mb-3">
+                Prof. Dr. İsmail Hakkı ALTAŞ
+              </h4>
+              <p className="label-caps leading-relaxed mb-8">
+                HEAD OF DEPT. OF EEE, OSTIM TECHNICAL UNIVERSITY
+              </p>
+            </div>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=ismailhakki.altas@ostimteknik.edu.tr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-stone-400 hover:text-stone-700 text-sm underline underline-offset-4 decoration-stone-200 italic transition"
+            >
+              ismailhakki.altas@ostimteknik.edu.tr
+            </a>
+          </div>
+
+          {/* Ref 2 */}
+          <div className="white-card p-10 flex flex-col justify-between">
+            <div>
+              <h4 className="font-bold text-stone-800 text-xl md:text-2xl mb-3">
+                Dr. Öğr. Üyesi Hüseyin KÖSE
+              </h4>
+              <p className="label-caps leading-relaxed mb-8">
+                DEPT. OF EEE, OSTIM TECHNICAL UNIVERSITY
+              </p>
+            </div>
+            <div className="space-y-2">
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=huseyin.kose@ostimteknik.edu.tr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-stone-400 hover:text-stone-700 text-sm underline underline-offset-4 decoration-stone-200 italic block transition"
+              >
+                huseyin.kose@ostimteknik.edu.tr
+              </a>
+              <p className="text-stone-400 text-sm font-medium tracking-wide">+90 538 291 67 03</p>
+            </div>
+          </div>
+
+          {/* Ref 3 */}
+          <div className="white-card p-10 flex flex-col justify-between">
+            <div>
+              <h4 className="font-bold text-stone-800 text-xl md:text-2xl mb-3">
+                Dr. Şenol GÜLGÖNÜL
+              </h4>
+              <p className="label-caps leading-relaxed mb-8">
+                DEPT. OF EEE, OSTIM TECHNICAL UNIVERSITY
+              </p>
+            </div>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=senol.gulgonul@ostimteknik.edu.tr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-stone-400 hover:text-stone-700 text-sm underline underline-offset-4 decoration-stone-200 italic transition"
+            >
+              senol.gulgonul@ostimteknik.edu.tr
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section - Configured directly for Gmail web compose */}
+      <section id="contact" className="py-24 px-6 max-w-4xl mx-auto text-center">
+        <span className="label-caps text-stone-400 block mb-2">Get in Touch</span>
+        <h2 className="serif text-4xl md:text-5xl mb-12 italic text-stone-800">Contact</h2>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Gmail Direct Action Card */}
+          <div className="p-10 border border-stone-200 bg-white/50 hover:bg-white hover:border-stone-400 transition group flex flex-col justify-between rounded-sm shadow-sm">
+            <div>
+              <div className="w-14 h-14 mx-auto rounded-full bg-red-50 text-red-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Mail className="w-6 h-6" />
+              </div>
+              <p className="label-caps mb-2 italic uppercase">Gmail Direct Compose</p>
+              <p className="serif italic text-xl text-stone-800 mb-4 select-all">
+                kahramanyagmur178@gmail.com
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 border-t border-stone-100">
+              <a
+                href={gmailComposeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-stone-900 text-stone-50 text-xs uppercase tracking-wider font-semibold rounded-sm hover:bg-stone-700 transition"
+              >
+                <span>Open in Gmail</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              <button
+                onClick={handleCopyEmail}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-stone-300 text-stone-700 text-xs uppercase tracking-wider font-semibold rounded-sm hover:bg-stone-100 transition"
+              >
+                {copiedEmail ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* LinkedIn Profile Card */}
+          <a
+            href="https://www.linkedin.com/in/yagmur-kahraman-37a040255/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-10 border border-stone-200 bg-white/50 hover:bg-white hover:border-stone-400 transition group flex flex-col justify-between rounded-sm shadow-sm"
+          >
+            <div>
+              <div className="w-14 h-14 mx-auto rounded-full bg-blue-50 text-blue-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Linkedin className="w-6 h-6" />
+              </div>
+              <p className="label-caps mb-2 italic uppercase">LinkedIn Profile</p>
+              <p className="serif italic text-xl text-stone-800 mb-2">View Professional Profile</p>
+              <p className="text-xs text-stone-400 italic">Connect on LinkedIn</p>
+            </div>
+
+            <div className="pt-4 border-t border-stone-100 flex items-center justify-center gap-2 text-xs uppercase tracking-wider font-semibold text-stone-800 group-hover:text-blue-800 transition">
+              <span>Visit Profile</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 text-center bg-white border-t border-stone-200/70">
+        <p className="text-[10px] uppercase tracking-[0.45em] text-stone-400 italic font-bold">
+          © {new Date().getFullYear()} Yağmur Kahraman • Electrical & Electronics Engineering
+        </p>
+      </footer>
+    </div>
+  );
+}
